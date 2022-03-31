@@ -1,6 +1,7 @@
 .include "reader.s"
 
 .equ pagelen, 4096
+.EQU sys_mmap2, 192 
 .equ setregoffset, 28
 .equ clrregoffset, 40
 .equ PROT_READ, 1
