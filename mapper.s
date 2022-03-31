@@ -34,7 +34,7 @@ _start: openFile devmem, S_RDWR
 	@ print virtual address
 
 	mov r0, #1
-	ldr r1, r8 @ string to print
+	ldr r1, [r8] @ string to print
 	mov r2, #16 @ length of our string
 	mov r7, #4 @ linux write system call
 	svc 0 @ Call linux to print
