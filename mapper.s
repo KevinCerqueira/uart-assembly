@@ -30,17 +30,17 @@ _start: openFile devmem, S_RDWR
 	@ keep the returned virtual address	 
 	movs r8, r0 
 	
-	@ move addr to msg reg
-	mov r2, r8
+	@ print virtual address
 
-	@ file descriptor (stdout)
-	mov r1, #1
+	mov r0, #1
+	ldr r1, r8 @ string to print
+	mov r2, #16 @ length of our string
+	mov r7, #4 @ linux write system call
+	svc 0 @ Call linux to print
 
-	@ system call number
-	mov r0, #4
-
-	@ call kernel
-	int 0x80
+	mov r0, #0 @ Use 0 return code
+	mov r7, #1 @ Service command code 1
+	svc 0 @ Call linux to terminate
 
 .data
 timespecsec: .word 0
