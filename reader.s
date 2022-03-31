@@ -2,6 +2,8 @@
 .equ O_WRONLY, 1
 .equ O_CREAT, 0100
 .equ S_RDWR, 0666
+.EQU sys_open, 5 
+
 
 .macro openFile fileName, flags
 	ldr r0, =\fileName
