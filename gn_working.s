@@ -6,7 +6,9 @@
 @ IOmemory.s
 @ Opens the /dev/gpiomem device and maps GPIO memory
 @ into program virtual address space.
-@ 2017-09-29: Bob Plantz 
+@ 2017-09-29: Bob Plantz
+
+@ 2022-04-06: Guilherme Nobre
 
 @ Define my Raspberry Pi
         .cpu    cortex-a53
@@ -69,13 +71,15 @@ main:
         add     fp, sp, #12      		@ set our frame pointer
         sub     sp, sp, #STACK_ARGS 		@ sp on 8-byte boundary
 
-@ Open /dev/gpiomem for read/write and syncing        
+@ Open /dev/gpiomem for read/write and syncing     
+   
         ldr     r0, #deviceAddr  		@ address of /dev/gpiomem
         ldr     r1, #openMode    		@ flags for accessing device
         bl      open
         mov     r4, r0          		@ use r4 for file descriptor
 
-@ Map the GPIO registers to a virtual memory location so we can access them        
+@ Map the GPIO registers to a virtual memory location so we can access them    
+    
         str     r4, [sp, #FILE_DESCRP_ARG] 	@ /dev/gpiomem file descriptor
         ldr     r0, gpio        		@ address of GPIO
         
@@ -85,20 +89,17 @@ main:
         mov     r2, #PROT_RDWR   		@ read/write this memory
         mov     r3, #MAP_SHARED  		@ share with other processes
         bl      mmap
+        
+        ldr 	r0, =0x7E200004		@ Carrega o endereço de memoria no r0 para fazer o acesso e alteração de todos os dados
         mov     r5, r0          		@ save virtual memory address
-
-	ldr 	r0, =0x7E200004		@ Carrega o endereço de memoria no r0 para fazer o acesso e alteração de todos os dados
 	
 	mov	r1, #4				@ Move o valor logico 100 para o registrador r1
 	
 	@ lsl	r1, #18 			@ Transforma o valor logico 1 em 262.144^10 (001 000 000 000 000 000 000) 
-	 
 	@ str	r1, [r5, #0]			@ Escreve o valor no endereço de memoria guardado em r0 (Endereço da GPFSEL0)
 	
 	str	r1, [r5, #14]			@ Escreve o valor no endereço de memoria guardado em r0 (Endereço FSEL14 da GPFSEL1)
-	
 	str	r1, [r5, #17]			@ Escreve o valor no endereço de memoria guardado em r0 (Endereço FSEL15 da GPFSEL1)
-	
 	
 	@ mov 	r1, #1				@ Substitui o valor em r1 por 1
 	@ lsl 	r1, #6				@ Transforma o valor logico 1 em 64^10 (0100 0000)
