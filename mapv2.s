@@ -32,10 +32,16 @@ L1:		ldr	r0, =uartaddr
 		@ keep virtual address
 		mov	r5,	r0
 
+		@terminate program
+		mov r0, #0
+		mov r7, #1
+		svc 0
+
 .data
 timespecsec: .word 0
 timespecnano: word 100000000
 devmem: .asciz "/dev/mem"
+uartaddr: .word periph+uart_offset
 
 
 
