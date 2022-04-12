@@ -1,5 +1,7 @@
 .include "file_read.s"
 
+@ feito na pi 103
+
 .equ pagelen, 4096
 .equ sys_mmap2, 192
 
