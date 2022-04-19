@@ -1,7 +1,7 @@
 .include "file_read.s"
 
 @ MI DE SISTEMAS DIGITAIS, PROBLEMA 1, TURMA 2
-@ ALUNOS: GUILHERME NOBRE, KEVIN CERQUEIRA, ESDRAS ALGUMA COISA
+@ ALUNOS: GUILHERME NOBRE, KEVIN CERQUEIRA, ESDRAS ABREU
 @ testado na pi 104
 
 @ constantes para mapeamento de memoria
