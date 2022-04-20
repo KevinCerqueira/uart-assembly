@@ -6,22 +6,20 @@
 
 @ constantes para mapeamento de memoria
 
-.equ pagelen, 4096
-.equ sys_mmap2, 192
+.equ pagelen, 4096                @ tamanho de uma página de memoria
+.equ sys_mmap2, 192               @ numero de serviço linux
 
-.equ uart_offset, 0x20201
-.equ PROT_RD, 0x1
-.equ PROT_WR, 0x2
-.equ MAP_SHARED, 1
-.equ PROT_RDWR, PROT_RD|PROT_WR
-.equ BUFFERLEN, 250
+.equ uart_offset, 0x20201         @ endereço base dos registradores da uart (dividido por 4096)
+.equ PROT_RD, 0x1		  @ parâmetro para segurança de leitura
+.equ PROT_WR, 0x2		  @ parâmetro para segurança de escrita
+.equ MAP_SHARED, 1		  @ parâmetro para mapeamento da memória
 
 @ constantes para endereços de registradores da UART
 
 .equ UART_IBRD, 0x24     @ divisor inteiro da baude raute (taxa de transmissão)
 .equ UART_FBRD, 0x28     @ divisor fracionário da baude raute (taxa de transmissão)
-.equ UART_LCRH, 0x2C     @ linha de controle do registrador
-.equ UART_IMSC, 0x38     @ Setando a limpeza da mascara
+.equ UART_LCRH, 0x2C     @ registrador de linha de controle 
+.equ UART_IMSC, 0x38     @ registrador de máscara
 .equ UART_CR, 0x30       @ registrador de controle
 .equ UART_FR, 0x18       @ registrador de flag
 .equ UART_DR, 0x0        @ registrador de dados
@@ -130,9 +128,5 @@ get_loop:
 		svc 0
 
 .data
-timespecsec: .word 0
-wbaudrate: .word 16
-clrbaudrate: .word 0
-timespecnano: .word 100000000
 devmem: .asciz "/dev/mem"
 uartaddr: .word uart_offset
