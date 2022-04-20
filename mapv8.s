@@ -18,33 +18,33 @@
 
 @ constantes para endereços de registradores da UART
 
-.equ UART_IBRD, 0x24
-.equ UART_FBRD, 0x28
-.equ UART_LCRH, 0x2C
-.equ UART_IMSC, 0x38
-.equ UART_CR, 0x30
-.equ UART_FR, 0x18
-.equ UART_DR, 0x0
+.equ UART_IBRD, 0x24     @ divisor inteiro da baude raute (taxa de transmissão)
+.equ UART_FBRD, 0x28     @ divisor fracionário da baude raute (taxa de transmissão)
+.equ UART_LCRH, 0x2C     @ linha de controle do registrador
+.equ UART_IMSC, 0x38     @ Setando a limpeza da mascara
+.equ UART_CR, 0x30       @ registrador de controle
+.equ UART_FR, 0x18       @ registrador de flag
+.equ UART_DR, 0x0        @ registrador de dados
 
 @ lcrh setup
 
-.equ UART_WLEN1, (1<<6)
-.equ UART_WLEN0, (1<<5)
-.equ UART_FEN, (1<<4)
-.equ STP2, (1<<3)
+.equ UART_WLEN1, (1<<6)   @ MSB de comprimento de palavra
+.equ UART_WLEN0, (1<<5)   @ LSB de comprimento de palavra
+.equ UART_FEN, (1<<4)     @ Habilitando a FIFO
+.equ STP2, (1<<3)         @ Uso de 2 bits de paradas (stop bit)
 
 @ cr setup
 
-.equ UART_RXE, (1<<9)
-.equ UART_TXE, (1<<8)
-.equ UART_UARTEN, (1<<0)
+.equ UART_RXE, (1<<9)       @ Habilitando recebimento de dados (RX)
+.equ UART_TXE, (1<<8)	    @ Habilitando transmissão de dados (TX)
+.equ UART_UARTEN, (1<<0)    @ Habilitando a UART
 
 @ fr setup
 
-.equ UART_TXFF, (1<<7)
-.equ UART_RXFE, (1<<4)
+.equ UART_TXFF, (1<<7)      @ Transmissão FIFO
+.equ UART_RXFE, (1<<4)      @ Recepção FIFO
 
-.equ BITS, (UART_WLEN1|UART_WLEN0|UART_FEN|STP2)
+.equ BITS, (UART_WLEN1|UART_WLEN0|UART_FEN|STP2) 
 .equ FINAL_BITS, (UART_RXE|UART_TXE|UART_UARTEN)
 
 .global _start
@@ -53,8 +53,8 @@ _start: openFile devmem, S_RDWR
 		mov	r4, r0 
 
 MAP_MEM:
-		ldr r5, =uartaddr
-		ldr r5, [r5]
+		ldr r5, =uartaddr           
+		ldr r5, [r5]		      
 		mov r1, #pagelen
 		mov r2, #(PROT_RD + PROT_WR)
 		mov r3, #MAP_SHARED
