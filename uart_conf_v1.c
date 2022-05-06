@@ -3,9 +3,10 @@
 #include <fcntl.h>			//Used for UART
 #include <termios.h>		//Used for UART
 
-int uart_filestream = -1;
+main(){
+	int uart0_filestream = -1;
 
-uart_filestream = open("/dev/serial0", 3);		//Open in non blocking read/write mode
+uart0_filestream = open("/dev/serial0", O_RDWR | O_NOCTTY | O_NDELAY);		//Open in non blocking read/write mode
 if (uart0_filestream == -1){
 
 	//ERROR - CAN'T OPEN SERIAL PORT
@@ -14,7 +15,7 @@ if (uart0_filestream == -1){
 	
 //CONFIGURE THE UART
 struct termios options;
-tcgetattr(uart_filestream, &options);
+tcgetattr(uart0_filestream, &options);
 options.c_cflag = B9600 | CS8 | CLOCAL | CREAD;		//<Set baud rate
 options.c_iflag = IGNPAR;
 options.c_oflag = 0;
@@ -33,11 +34,11 @@ p_tx_buffer = &tx_buffer[0];
 *p_tx_buffer++ = 'l';
 *p_tx_buffer++ = 'o';
 
-if (uart0_filestream != -1)
-{
+if (uart0_filestream != -1){
 	int count = write(uart0_filestream, &tx_buffer[0], (p_tx_buffer - &tx_buffer[0]));		//Filestream, bytes to write, number of bytes to write
-	if (count < 0)
-	{
+	if (count < 0){
 		printf("UART TX error\n");
 	}
+}
+	
 }
