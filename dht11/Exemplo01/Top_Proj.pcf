@@ -1,0 +1,10 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Tue Apr 11 15:21:36 2017
+//! **************************************************************************
+
+SCHEMATIC START;
+CONFIG VCCAUX = "3.3";
+COMP "GPIO_DIP1" LOCATE = SITE "B3" LEVEL 1;
+COMP "GPIO_LED1" LOCATE = SITE "P4" LEVEL 1;
+SCHEMATIC END;
+

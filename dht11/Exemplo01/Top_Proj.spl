@@ -1,0 +1,10 @@
+[Inputs]
+GPIO_DIP1
+CLK1HZ
+CLK2HZ
+[Outputs]
+GPIO_LED1
+[BiDir]
+[ATTRIBUTES]
+VeriModel Top_Proj
+

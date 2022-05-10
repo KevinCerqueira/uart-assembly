@@ -1,0 +1,37 @@
+vhdtdtfi -lib work C:/ProjetosXilinx/Exemplo01/Top_Proj.v -lang verilog -prj Exemplo01 -o Top_Proj.spl -module Top_Proj -template C:/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
+spl2sym -intstyle ise -family spartan6 Top_Proj.spl C:/ProjetosXilinx/Exemplo01/Top_Proj.sym 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Avt_S6LX9_MicroBoard_UCF_110804.ucf -p xc6slx9-csg324-2 Top_Proj.ngc Top_Proj.ngd  
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Avt_S6LX9_MicroBoard_UCF_110804.ucf -p xc6slx9-csg324-2 Top_Proj.ngc Top_Proj.ngd  
+netgen -intstyle ise -insert_glbl true -w -dir netgen/translate -ofmt verilog -sim Top_Proj.ngd Top_Proj_translate.v 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+ngdbuild -intstyle ise -dd _ngo -nt timestamp -uc Avt_S6LX9_MicroBoard_UCF_110804.ucf -p xc6slx9-csg324-2 Top_Proj.ngc Top_Proj.ngd  
+map -intstyle ise -p xc6slx9-csg324-2 -w -logic_opt off -ol high -t 1 -xt 0 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o Top_Proj_map.ncd Top_Proj.ngd Top_Proj.pcf 
+par -w -intstyle ise -ol high -mt off Top_Proj_map.ncd Top_Proj.ncd Top_Proj.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml Top_Proj.twx Top_Proj.ncd -o Top_Proj.twr Top_Proj.pcf -ucf Avt_S6LX9_MicroBoard_UCF_110804.ucf 
+netgen -intstyle ise -insert_glbl true -w -dir netgen/translate -ofmt verilog -sim Top_Proj.ngd Top_Proj_translate.v 
+bitgen -intstyle ise -f Top_Proj.ut Top_Proj.ncd 
+vhdtdtfi -lib work C:/ProjetosXilinx/Exemplo01/Top_Proj.v -lang verilog -prj Exemplo01 -o Top_Proj.spl -module Top_Proj -template C:/Xilinx/14.7/ISE_DS/ISE//data/splveri.tft -deleteonerror 
+spl2sym -intstyle ise -family spartan6 Top_Proj.spl C:/ProjetosXilinx/Exemplo01/Top_Proj.sym 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
+xst -intstyle ise -ifn "C:/ProjetosXilinx/Exemplo01/Top_Proj.xst" -ofn "C:/ProjetosXilinx/Exemplo01/Top_Proj.syr" 
