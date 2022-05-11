@@ -2,15 +2,15 @@ module DHT11 (
     input CLK,
     input EN,
     input RST,
-    inout DHT_DATA //pino Tristate
+    inout DHT_DATA, //pino Tristate
     output [7:0] HUM_INT,
     output [7:0] HUM_FLOAT,
     output [7:0] TEMP_INT,
     output [7:0] TEMP_FLOAT,
     output [7:0] CRC,
     output WAIT, // avisa quando o circuito está operando esperando um retorno
-    output DEBUG, //realização de testes osciloscopio
-    output error
+    output DEBUG //realização de testes osciloscopio
+   // output error
 );
 
 reg DHT_OUT, DIR, WAIT_REG, DEBUG_REG; //Registrador de saída (dir altera o estado de saida ou entrada)
@@ -23,12 +23,12 @@ wire DHT_IN;
 assign WAIT = WAIT_REG;
 assign DEBUG = DEBUG_REG;
 
-TRIS TRIS_DATA(
-    .PORT(DMT_DATA),
-    .DIR(DIR),
-    .SEND(DHT_OUT),
-    .READ(DHT_IN)
-);
+//TRIS TRIS_DATA(
+//    .PORT(DMT_DATA),
+//    .DIR(DIR),
+//    .SEND(DHT_OUT),
+//    .READ(DHT_IN)
+//);
 
 assign HUM_INT[7] = INTDATA[0];
 assign HUM_INT[6] = INTDATA[1];
@@ -78,7 +78,7 @@ assign CRC[0] = INTDATA[39];
 reg [3:0] STATE; // Máquina de estados
 
 //Definição de estados
-parameter S0=1,S1=2,S2=3,S3=4,S4=5,S5=6,S6=7, S7=8, S8=9, S9=10 STOP=0 START=11;
+parameter S0=1,S1=2,S2=3,S3=4,S4=5,S5=6,S6=7, S7=8, S8=9, S9=10, STOP=0, START=11;
 
 always @(posedge CLK) 
 begin: FSM
@@ -238,13 +238,13 @@ begin: FSM
                         begin
                             if (COUNTER>5000)
                             begin
-                              INTDATA[index]<=1'b1;
+                              INTDATA[INDEX]<=1'b1;
                               DEBUG_REG<=1'b1;  
                             end else begin
-                              INTDATA[index]<=1'b0;
+                              INTDATA[INDEX]<=1'b0;
                               DEBUG_REG<=1'b0;  
                             end
-                            if (index<39) 
+                            if (INDEX<39) 
                             begin
                                 COUNTER<= 26'b00000000000000000000000000;
                                 STATE<=S9;
@@ -265,7 +265,7 @@ begin: FSM
 
                 S9:
                     begin
-                        index<=index+1'b1;
+                        INDEX<=INDEX+1'b1;
                         STATE <= S6;
                     end
 
@@ -279,7 +279,7 @@ begin: FSM
                             COUNTER<= 26'b00000000000000000000000000;
                             DIR<=1'b1;
                             error<= 1'b0;
-                            index<= 6'b000000;  
+                            INDEX<= 6'b000000;  
                             end else begin
                                 if (COUNTER<3200000) 
                                 begin
