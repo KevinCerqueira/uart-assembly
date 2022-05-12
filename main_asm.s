@@ -49,12 +49,12 @@
 .equ BITS, (UART_WLEN1|UART_WLEN0|UART_FEN|STP2) 
 .equ FINAL_BITS, (UART_RXE|UART_TXE|UART_UARTEN)
 
-.global _start
+.global begin_uart
 
-_start: openFile devmem, S_RDWR
-		mov	r4, r0 @ Movendo a leitura de arquivo para o registrador r4
 
-MAP_MEM:
+begin_uart: openFile devmem, S_RDWR
+		mov	r4, r0 @ Movendo a leitura de arquivo para r4
+@ MAP_MEM:
 		ldr r5, =uartaddr           
 		ldr r5, [r5]		      
 		mov r1, #pagelen
@@ -69,18 +69,18 @@ MAP_MEM:
 		@ keep virtual address
 		mov	r5,	r0	
 
-DISABLE_UART:
+@ DISABLE_UART:
 		mov r1, #0
 		str r1, [r5, #UART_CR]
 
-CLEAR_FIFO:
+@ CLEAR_FIFO:
 		ldr r1, [r5, #UART_LCRH]
 		mov r0, #1
 		lsl r0, #4
 		bic r1, r0
 		str r1, [r5, #UART_LCRH]
 
-SET_UART:		
+@ SET_UART:		
 		@ set parity, word length, stop bits
 
 		mov r1, #BITS
@@ -102,26 +102,28 @@ SET_UART:
 
 		ldr r1, =FINAL_BITS
 		str r1, [r5, #UART_CR]
-put_loop:
+@ put_loop:
 		@ ldr r2, [r5, #UART_FR]
 		@ tst r2, #UART_TXFF
 		@ bne put_loop
-
-		mov r6, #5
+		
+		@ uart info is stored in r6
+		@ mov r6, #5
 		str r6, [r5, #UART_DR]
 
-		b end_uart
-get_loop:
+		@ b end_uart
+@ get_loop:
 		@ ldr r2, [r5, #UART_FR]
 		@ tst r2, #UART_RXFE
 		@ bne get_loop
 
 		ldr r3, [r5, #UART_DR]
-end_uart:
-		@terminate program
-		mov r0, #0
-		mov r7, #1
-		svc 0
+@ end_uart: 
+		bx lr
+		@ terminate program
+		@ mov r0, #0
+		@ mov r7, #1
+		@ svc 0
 
 .data
 devmem: .asciz "/dev/mem"
