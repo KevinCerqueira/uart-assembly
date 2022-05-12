@@ -1,0 +1,85 @@
+############################################################################	
+# Texas Instruments CDCE913 Triple-Output PLL Clock Chip
+#   CLK_40MHZ: 40 MHz, USER_CLOCK can be used as external configuration clock
+#   CLK_66MHZ: 66.667 MHz
+#   CLK_100MHZ: 100 MHz 
+############################################################################
+#NET "CLK_40MHZ"       LOC = V10 | IOSTANDARD = LVCMOS33;               # "USER_CLOCK"
+#NET CLK_40MHZ TNM_NET = CLK_40MHZ;
+#TIMESPEC TS_CLK_40MHZ = PERIOD CLK_40MHZ 40000 kHz;
+
+#NET "CLK_66MHZ"     LOC = "K15"  | IOSTANDARD = LVCMOS33;
+#Net CLK_66MHZ TNM_NET = CLK_66MHZ;
+#TIMESPEC TS_CLK_66MHZ = PERIOD CLK_66MHZ 15000 ps INPUT_JITTER 1000 ps;
+#NET "CLK100MHz" CLOCK_DEDICATED_ROUTE = FALSE;
+#PIN "u_DRAM_Core/memc3_infrastructure_inst/U_BUFG_CLK0.O" CLOCK_DEDICATED_ROUTE = FALSE;
+
+#PIN "inst_PLL1/clkout2_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
+
+NET "ap_clk"          LOC = C10 | IOSTANDARD = LVCMOS33;             
+NET ap_clk TNM_NET = ap_clk;
+TIMESPEC ts_ap_clk = PERIOD ap_clk 100000 kHz;
+
+#DA Sync CLOCK
+#NET "CLK25MHZ"          LOC = V10 | IOSTANDARD = LVCMOS33;               # "CLOCK_Y3"
+#NET CLK25MHZ TNM_NET = CLK25MHZ;
+#TIMESPEC TS_CLK25MHZ = PERIOD CLK25MHZ 1 kHz;
+
+
+
+############################################################################	
+# User LEDs			
+############################################################################	
+#NET LED<0>           LOC = P4  | IOSTANDARD = LVCMOS18 | DRIVE = 8 | SLEW = SLOW ;
+#NET LED<1>           LOC = L6  | IOSTANDARD = LVCMOS18 | DRIVE = 8 | SLEW = SLOW ;
+#NET LED<2>           LOC = F5  | IOSTANDARD = LVCMOS18 | DRIVE = 8 | SLEW = SLOW ;
+#NET LED<3>           LOC = C2  | IOSTANDARD = LVCMOS18 | DRIVE = 8 | SLEW = SLOW ;
+
+############################################################################	
+# Connector J5 
+#NET PMOD1_P1          LOC = F15 | IOSTANDARD = LVCMOS33; #| DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P1"             
+#NET PMOD1_P2          LOC = F16 | IOSTANDARD = LVCMOS33; #| DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P2"             
+#NET PMOD1_P3          LOC = C17 | IOSTANDARD = LVCMOS33; #| DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P3"             
+#NET PMOD1_P4          LOC = C18 | IOSTANDARD = LVCMOS33; #| DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P4"             
+#NET PMOD1_P7          LOC = F14 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P7"             
+#NET PMOD1_P8          LOC = G14 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P8"             
+#NET PMOD1_P9          LOC = D17 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P9"             
+#NET PMOD1_P10         LOC = D18 | IOSTANDARD = LVCMOS33 | DRIVE = 8 | SLEW = SLOW ;  # "PMOD1_P10"             
+#
+## Connector J4 
+#NET "PMOD2_P1" CLOCK_DEDICATED_ROUTE = FALSE; 
+#NET PMOD2_P1          LOC = H12 | IOSTANDARD = LVCMOS33;               # "PMOD2_P1" 0
+#NET PMOD2_P2          LOC = G13 | IOSTANDARD = LVCMOS33;               # "PMOD2_P2"1
+#NET PMOD2_P3          LOC = E16 | IOSTANDARD = LVCMOS33;               # "PMOD2_P3"2
+#NET PMOD2_P4          LOC = E18 | IOSTANDARD = LVCMOS33;               # "PMOD2_P4"3
+#NET PMOD2_P7          LOC = K12 | IOSTANDARD = LVCMOS33;               # "PMOD2_P7"6
+#NET PMOD2_P8          LOC = K13 | IOSTANDARD = LVCMOS33;               # "PMOD2_P8"7
+#NET PMOD2_P9          LOC = F17 | IOSTANDARD = LVCMOS33;               # "PMOD2_P9"8
+#NET PMOD2_P10         LOC = F18 | IOSTANDARD = LVCMOS33;               # "PMOD2_P10"9
+#
+############################################################################	
+# User DIP Switch x4
+#   Internal pull-down required since external resistor is not populated
+############################################################################	
+#NET DIP1         LOC = B3  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "GPIO_DIP1"
+#NET DIP2         LOC = A3  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "GPIO_DIP2"
+#NET DIP3         LOC = B4  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "GPIO_DIP3"
+#NET DIP4         LOC = A4  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "GPIO_DIP4"
+############################################################################	
+# User Reset Push Button
+#   Ignore the timing for this signal
+#   Internal pull-down required since external resistor is not populated
+############################################################################	
+#NET USER_RESET      LOC = V4  | IOSTANDARD = LVCMOS33 | PULLDOWN;    # "USER_RESET"
+#NET USER_RESET      TIG;
+
+############################################################################	
+# Silicon Labs CP2102 USB-to-UART Bridge Chip
+############################################################################	
+#NET USB_RS232_RXD     LOC = R7  | IOSTANDARD = LVCMOS33;               # "USB_RS232_RXD"
+#NET USB_RS232_TXD     LOC = T7  | IOSTANDARD = LVCMOS33;               # "USB_RS232_TXD"
+
+############################################################################
+# VCC AUX VOLTAGE 
+############################################################################
+CONFIG VCCAUX = "3.3" ;

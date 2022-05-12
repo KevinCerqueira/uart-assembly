@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\ProjetosXilinx\Exemplo01\Top_Proj.ncd
+OUTFILE=C:\ProjetosXilinx\Exemplo01\Top_Proj.bit
+FAMILY=Spartan6
+PART=xc6slx9-2csg324
+WORKINGDIR=C:\ProjetosXilinx\Exemplo01
+LICENSE=WebPack
+USER_INFO=210802328_1777514169_210621089_921
