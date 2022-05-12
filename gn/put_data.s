@@ -41,11 +41,15 @@ put_data:
 		@ bne put_loop
 		
 		@ uart info is stored in r6
-		@ mov r6, #5
+		mov r6, #4
 		str r6, [r5, #UART_DR]
+		
+		bx lr
 
 		@ b end_uart
-@ get_loop:
+
+		@ get_loop:
+
 		@ ldr r2, [r5, #UART_FR]
 		@ tst r2, #UART_RXFE
 		@ bne get_loop
