@@ -10,7 +10,7 @@
 
 @ baud rate setup
 
-.equ IBDRT, 0b1111101000
+.equ IBDRT, 0b1111101000 @ 1000 em binário
 
 @ lcrh setup
 
@@ -60,6 +60,8 @@ set_uart:
 		@ set baud rate
 
 		mov r1, #IBDRT
+		lsl r1, #3
+
 		str r1, [r5, #UART_IBRD]
 		mov r1, #0
 		str r1, [r5, #UART_FBRD]
@@ -68,3 +70,4 @@ set_uart:
 
 		ldr r1, =FINAL_BITS
 		str r1, [r5, #UART_CR]
+		bx lr
