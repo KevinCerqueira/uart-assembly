@@ -33,7 +33,7 @@ map_mem: openFile devmem, S_RDWR
 
 		@ keep virtual address
 		mov	r5,	r0	
-    bx lr
+    		bx lr
 
 .data
 devmem: .asciz "/dev/mem"
